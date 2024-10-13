@@ -1,0 +1,7 @@
+/.vs/
+
+/FizzBuzz.Tests/bin/
+/FizzBuzz.Tests/obj/
+
+/FizzBuzz/bin/
+/FizzBuzz/obj/
