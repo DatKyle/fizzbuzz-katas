@@ -43,5 +43,15 @@ namespace FizzBuzz.Tests
             Assert.Equal(typeof(BuzzAction), result.GetType());
             Assert.Equal("buzz", result.Process());
         }
+
+        [Fact]
+        public void MultipleOf_3_and_5_ShouldBeFizzBuzz()
+        {
+            FizzBuzzFactory fizzBuzzFactory = new();
+            IFizzBuzzAction? result = fizzBuzzFactory.Process(15);
+            Assert.NotNull(result);
+            Assert.Equal(typeof(FizzBuzzAction), result.GetType());
+            Assert.Equal("fizzbuzz", result.Process());
+        }
     }
 }
