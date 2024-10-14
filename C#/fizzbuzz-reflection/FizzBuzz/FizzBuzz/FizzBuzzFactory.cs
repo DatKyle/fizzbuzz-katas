@@ -30,6 +30,7 @@ namespace FizzBuzz
 
         public IFizzBuzzAction? Process(int value)
         {
+            if(value != 0) return null;
             return new ZeroAction();
         }
     }
