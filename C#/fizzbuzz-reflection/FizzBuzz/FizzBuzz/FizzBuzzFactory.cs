@@ -32,8 +32,11 @@ namespace FizzBuzz
         public IFizzBuzzAction? Process(int value)
         {
             var zeroAction = triggerActions.FirstOrDefault(trgAct => trgAct.Key.Any(trgVal => trgVal == 0)).Value;
-            
-            var action = triggerActions.FirstOrDefault(trgAct => trgAct.Key.All(trgVal => checkValueTrigger(value, trgVal, zeroAction != null))).Value;
+
+            IFizzBuzzAction? action = triggerActions
+                .Where(trgAct => trgAct.Key.All(trgVal => checkValueTrigger(value, trgVal, zeroAction != null)))
+                .OrderByDescending(trgAct => trgAct.Key.Count())
+                .FirstOrDefault().Value;
 
             if (action != null) return action;
 
