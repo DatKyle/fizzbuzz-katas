@@ -15,5 +15,13 @@ namespace FizzBuzz.Tests
             Assert.Equal(typeof(ZeroAction), result.GetType());
             Assert.Equal("0", result.Process());
         }
+
+        [Fact]
+        public void One_ShouldBe1()
+        {
+            FizzBuzzFactory fizzBuzzFactory = new();
+            IFizzBuzzAction? result = fizzBuzzFactory.Process(1);
+            Assert.Null(result);
+        }
     }
 }
