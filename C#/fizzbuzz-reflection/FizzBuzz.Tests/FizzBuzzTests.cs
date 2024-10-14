@@ -58,5 +58,23 @@ namespace FizzBuzz.Tests
             Assert.Equal(typeof(FizzBuzzAction), result.GetType());
             Assert.Equal("fizzbuzz", result.Process());
         }
+
+        [Fact]
+        public void NegativeOne_ShouldBe1()
+        {
+            FizzBuzzFactory fizzBuzzFactory = new();
+            IFizzBuzzAction? result = fizzBuzzFactory.Process(-Number);
+            Assert.Null(result);
+        }
+
+        [Fact]
+        public void NegativeMultipleOf_3_and_5_ShouldBeFizzBuzz()
+        {
+            FizzBuzzFactory fizzBuzzFactory = new();
+            IFizzBuzzAction? result = fizzBuzzFactory.Process(FizzBuzz);
+            Assert.NotNull(result);
+            Assert.Equal(typeof(FizzBuzzAction), result.GetType());
+            Assert.Equal("fizzbuzz", result.Process());
+        }
     }
 }
