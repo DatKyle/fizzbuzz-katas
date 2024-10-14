@@ -23,5 +23,14 @@ namespace FizzBuzz.Tests
             IFizzBuzzAction? result = fizzBuzzFactory.Process(1);
             Assert.Null(result);
         }
+
+        [Fact]
+        public void Three_ShouldBeFizz() { 
+            FizzBuzzFactory fizzBuzzFactory = new();
+            IFizzBuzzAction? result = fizzBuzzFactory.Process(3);
+            Assert.NotNull(result);
+            Assert.Equal(typeof(FizzAction), result.GetType());
+            Assert.Equal("fizz", result.Process());
+        }
     }
 }
