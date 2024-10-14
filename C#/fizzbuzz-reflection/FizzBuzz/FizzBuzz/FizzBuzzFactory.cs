@@ -1,4 +1,4 @@
-﻿using System.Reflection;
+using System.Reflection;
 
 namespace FizzBuzz
 {
@@ -28,24 +28,9 @@ namespace FizzBuzz
             }      
         }
 
-        public string Process(int value)
+        public IFizzBuzzAction? Process(int value)
         {
-            string returnValue = "";
-            foreach (var triggerValue in triggerActions.Keys.Order())
-            {
-                // If triggerValue is 0 then skip the modulus check
-                if (triggerValue == 0 && (value < 0 || value > 0))
-                    continue;
-
-                if (triggerValue == 0 || value % triggerValue == 0)
-                {
-                    IFizzBuzzAction action = triggerActions[triggerValue];
-                    returnValue = action.ShouldReplace() ? action.Process() : returnValue + action.Process();
-                    if (!action.ShouldContinue())
-                        break;
-                }
-            }
-            return returnValue.Length > 0 ? returnValue : value.ToString();
+            return new ZeroAction();
         }
     }
 }
