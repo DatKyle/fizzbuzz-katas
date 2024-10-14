@@ -1,17 +1,18 @@
-using System.Reflection;
+﻿using System.Reflection;
+using FizzBuzz.Actions;
 
 namespace FizzBuzz
 {
 
-    public class FizzBuzzAttribute(int value) : Attribute
+    public class FizzBuzzAttribute(int[] value) : Attribute
     {
-        public int trigger = value;
+        public int[] trigger = value;
     }
 
     public class FizzBuzzFactory
     {
 
-        private Dictionary<int, IFizzBuzzAction> triggerActions = new Dictionary<int, IFizzBuzzAction>();
+        private readonly Dictionary<int[], IFizzBuzzAction> triggerActions = new Dictionary<int[], IFizzBuzzAction>();
 
         public FizzBuzzFactory()
         {
@@ -30,8 +31,9 @@ namespace FizzBuzz
 
         public IFizzBuzzAction? Process(int value)
         {
+
             if(value != 0) return null;
-            return new ZeroAction();
+            return triggerActions.FirstOrDefault(trgAct => trgAct.Key.Any(trgVal => trgVal == 0)).Value;
         }
     }
 }
